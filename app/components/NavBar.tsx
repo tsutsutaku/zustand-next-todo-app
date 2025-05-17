@@ -11,7 +11,7 @@ export default async function NavBar() {
         <nav className="w-full p-4 bg-white text-gray-900 shadow-md">
             <div className="container mx-auto flex justify-between items-center">
                 <Link href="/" className="text-xl font-bold">
-                    tsutsutaku.com
+                    tsutsutaku
                 </Link>
 
                 <div className="flex items-center space-x-4">
