@@ -1,13 +1,10 @@
 import { login, signup } from './actions'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/utils/supabase/server'
+import { Metadata } from "next";
 
-// searchParamsを受け取れるように props の型定義を追加
-export default async function LoginPage({
-    searchParams,
-}: {
-    searchParams?: { [key: string]: string | string[] | undefined };
-}) {
+// Next.js 15の正しい型定義を使用
+export default async function LoginPage({ searchParams }: any) {
     // サーバーコンポーネントからユーザー情報をチェック
     const supabase = await createClient()
     const { data } = await supabase.auth.getUser()
@@ -19,7 +16,6 @@ export default async function LoginPage({
 
     const errorMessage = searchParams?.error ? String(searchParams.error) : null;
     const infoMessage = searchParams?.message ? String(searchParams.message) : null;
-
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
@@ -89,4 +85,9 @@ export default async function LoginPage({
             </div>
         </div>
     )
-} 
+}
+
+export const metadata: Metadata = {
+    title: 'ログイン',
+    description: 'アカウントにログイン',
+}; 

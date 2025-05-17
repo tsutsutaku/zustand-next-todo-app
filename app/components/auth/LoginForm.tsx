@@ -38,14 +38,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ redirectUrl = '/' }) => {
 
             console.log('[LoginForm] ログイン成功 🎉 セッション:', data.session?.user.id);
             setSuccessMsg('ログイン成功！リダイレクト中...');
-
-            // サーバー上でも認証状態の変更を検知できるよう、少し待つ
-            setTimeout(() => {
-                console.log(`[LoginForm] リダイレクト先: ${redirectUrl}`);
-
-                // 直接location.hrefを使用（より信頼性の高い方法）
-                window.location.href = redirectUrl;
-            }, 500);
+            router.push(redirectUrl);
 
         } catch (error: any) {
             console.error('[LoginForm] ログインエラー:', error);
